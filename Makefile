@@ -12,8 +12,8 @@ DEPEXT    := d
 OBJEXT    := o
 
 CFLAGS    := -Wall  -Wextra -Wshadow -Wpointer-arith -Wcast-qual \
-			 -Wstrict-prototypes -Wmissing-prototypes -pedantic \
-			 -std=c99 -g -Iinc
+             -Wstrict-prototypes -Wmissing-prototypes -pedantic \
+             -std=c99 -g -Iinc
 
 SOURCES   := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS   := $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(SOURCES:.$(SRCEXT)=.$(OBJEXT)))
