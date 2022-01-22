@@ -1,5 +1,4 @@
 CC        := gcc
-RM        := rm
 
 SRCDIR    := src
 OBJDIR    := obj
@@ -19,6 +18,8 @@ SOURCES   := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS   := $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(SOURCES:.$(SRCEXT)=.$(OBJEXT)))
 DEPENDS   := $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(SOURCES:.$(SRCEXT)=.$(DEPEXT)))
 
+#OBJDELETE := $(shell find $(OBJDIR) -type d -empty -print)
+
 .PHONY: clean build run $(TARGET)
 
 build: $(BINDIR)/$(TARGET)
@@ -29,7 +30,8 @@ run: $(BINDIR)/$(TARGET)
 	$(BINDIR)/$(TARGET)
 
 clean:
-	$(RM) -rf $(OBJECTS) $(DEPENDS) $(BINDIR)/$(TARGET)
+	rm -rf $(OBJECTS) $(DEPENDS) $(BINDIR)/$(TARGET)
+	rm -rf $(OBJDIR)/*/
 
 $(OBJDIR)/%.$(OBJEXT): $(SRCDIR)/%.$(SRCEXT)
 	$(shell mkdir -p $(@D))
